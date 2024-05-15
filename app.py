@@ -57,7 +57,7 @@ body {
 """, unsafe_allow_html=True)
 
 # App layout
-st.title("Why You Kinda...? ", class_="title")
+st.markdown("""<h1 class="title">Why You Kinda...?</h1>""", unsafe_allow_html=True)
 
 # Display images and button
 col1, col2, col3 = st.columns([1, 2, 1])
