@@ -1,89 +1,75 @@
 import streamlit as st
+import time
 
-def main():
-    # Set a cute background color and text color
-    st.markdown(
-        """
-        <style>
-        .reportview-container {
-            background-color: #ffe4e1;
-            color: #ff69b4;
-        }
-        .sidebar .sidebar-content {
-            background-color: #ffe4e1;
-        }
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            margin-top: -50px;
-        }
-        .button {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #ff1493;
-        }
-        .image-side {
-            max-width: 15%;
-            height: auto;
-            margin: 10px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+# Set image paths (replace with your image locations)
+left_image_path = "left_image.jpg"
+right_image_path = "right_image.jpg"
+cute_image_path = "cute_gift_image.jpg"  # Consider a more specific image name
 
-    # Display side images
-    st.markdown(
-        """
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <img src="left_image.jpg" class="image-side">
-            <img src="right_image.jpg" class="image-side">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+# Initial button text
+button_text = "Why you kinda..."
 
-    # Center the button
-    st.markdown(
-        """
-        <div class="center">
-            <button class="button" id="changeTextButton">kinda what cuh</button>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+def update_text():
+  global button_text
+  # Animate button text transition
+  chars = "Why you kinda..."
+  new_text = "Why you kinda babe..."
+  for i in range(len(new_text)):
+    st.write(chars[:i+1])
+    time.sleep(0.05)  # Adjust speed as needed
+  button_text = new_text
 
-    # Placeholder for the image and script for button action
-    st.markdown(
-        """
-        <div id="imageContainer" style="text-align: center; display: none;">
-            <img src="cute_image.jpg" alt="kinda precious, adorable, and cute typpa 🥰" style="max-width: 100%; height: auto;">
-            <figcaption style="color: #ff69b4;">kinda precious, adorable, and cute typpa 🥰</figcaption>
-        </div>
-        <script>
-        document.getElementById('changeTextButton').onclick = function() {
-            var button = document.getElementById('changeTextButton');
-            button.innerHTML = 'kinda what babe 💕';
-            document.getElementById('imageContainer').style.display = 'block';
-        };
-        </script>
-        """,
-        unsafe_allow_html=True
-    )
+# Configure theme (adjust colors to your preference)
+st.set_page_config(page_title="Why You Kinda...? ",
+                   page_icon=":heart:",
+                   layout="wide")
+st.markdown("""
+<style>
+body {
+  background-color: #ffc0cb;  /* Light pink background */
+  font-family: 'Noto Serif KR', serif;
+}
 
-if __name__ == '__main__':
-    main()
+.title {
+  color: #f08080;  /* Soft pink for title */
+  font-size: 48px;
+}
+
+.stButton button {
+  background-color: #f0e68c;  /* Peachy button color */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.stButton button:hover {
+  background-color: #f8b3b3;  /* Darker peach on hover */
+}
+</style>
+""", unsafe_allow_html=True)
+
+# App layout
+st.title("Why You Kinda...? ", class_="title")
+
+# Display images and button
+col1, col2, col3 = st.columns([1, 2, 1])
+with col1:
+  st.image(left_image_path, width=200)
+with col2:
+  st.write("")  # Center the text
+with col3:
+  st.image(right_image_path, width=200)
+
+# Button click event
+if st.button(button_text):
+  update_text()
+  st.image(cute_image_path, width=500)
+
