@@ -1,7 +1,7 @@
 import streamlit as st
 from time import sleep  # Optional for a brief delay after click
 
-# Set image paths (replace with your image locations)
+# Set image paths (replace with your actual file locations)
 left_image_path = "left_image.jpg"
 right_image_path = "right_image.jpg"
 cute_image_path = "cute_image.jpg"
