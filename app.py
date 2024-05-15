@@ -1,5 +1,5 @@
 import streamlit as st
-from time import sleep  # Import for button press delay
+from time import sleep
 
 # Set image paths (replace with your image locations)
 left_image_path = "left_image.jpg"
@@ -50,7 +50,7 @@ body {
   margin-top: 20px;  /* Add some space above the button */
 }
 
-.stButton button {
+.button {  /* Define styles for the button class */
   background-color: #f0e68c;  /* Peachy button color */
   border: none;
   color: white;
@@ -65,7 +65,7 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.stButton button:hover {
+.button:hover {
   background-color: #f8b3b3;  /* Darker peach on hover */
 }
 </style>
@@ -79,15 +79,4 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
   st.image(left_image_path, width=200)
 with col2:
-  st.write("")  # Center the text (optional, title is already centered with CSS)
-with col3:
-  st.image(right_image_path, width=200)
-
-# Button container and click event
-with st.container():
-  button_class = "button-container"
-  st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
-  if st.button(button_text, class_="button"):
-    update_text()
-  st.write('</div>', unsafe_allow_html=True)
-
+  st.write("")  # Center the text (optional, title is already centered
