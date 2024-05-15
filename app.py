@@ -86,4 +86,4 @@ with col3:
 # Button container and click event
 with st.container():
   button_class = "button-container"
-  st.write('<div class="' + button_class + '">', unsafe_allow_html
+  st.write('<div class="' + button_class + '">', unsafe_allow_html)
