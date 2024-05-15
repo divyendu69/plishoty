@@ -1,4 +1,5 @@
 import streamlit as st
+from time import sleep  # Import for button press delay
 
 # Set image paths (replace with your image locations)
 left_image_path = "left_image.jpg"
@@ -7,11 +8,20 @@ cute_image_path = "cute_image.jpg"  # Consider a more specific image name
 
 # Initial button text
 button_text = "Why you kinda..."
+press_count = 0  # Track button press count
 
 def update_text():
-  global button_text
-  button_text = "Why you kinda babe..."
-  st.image(cute_image_path, width=500)
+  global button_text, press_count
+  press_count += 1
+  if press_count == 1:
+    button_text = "Why you kinda what cuh?"
+  elif press_count == 2:
+    button_text = "Why you kinda babe..."
+    st.image(cute_image_path, width=500)
+  else:
+    # Handle additional presses if needed
+    pass
+  sleep(0.25)  # Delay after each button press (adjust as desired)
 
 # Configure theme (adjust colors to your preference)
 st.set_page_config(page_title="Why You Kinda...? ",
@@ -24,10 +34,14 @@ body {
   font-family: 'Noto Serif KR', serif;
 }
 
+.title,
+.button {  /* Center both title and button */
+  text-align: center;
+}
+
 .title {
   color: #f08080;  /* Soft pink for title */
   font-size: 48px;
-  text-align: center;  /* Center the title */
 }
 
 .button-container {
@@ -73,7 +87,7 @@ with col3:
 with st.container():
   button_class = "button-container"
   st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
-  if st.button(button_text):
+  if st.button(button_text, class_="button"):
     update_text()
   st.write('</div>', unsafe_allow_html=True)
 
