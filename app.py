@@ -3,7 +3,7 @@ import streamlit as st
 # Set image paths (replace with your image locations)
 left_image_path = "left_image.jpg"
 right_image_path = "right_image.jpg"
-cute_image_path = "cute_gift_image.jpg"  # Consider a more specific image name
+cute_image_path = "cute_image.jpg"  # Consider a more specific image name
 
 # Initial button text
 button_text = "Why you kinda..."
@@ -32,7 +32,7 @@ body {
 
 .button-container {
   display: flex;
-  justify-content: center;  /* Center the button horizontally */
+  justify-content: center;  /* Center horizontally */
   margin-top: 20px;  /* Add some space above the button */
 }
 
@@ -65,13 +65,13 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
   st.image(left_image_path, width=200)
 with col2:
-  st.write("")  # Center the text
+  st.write("")  # Center the text (optional, title is already centered with CSS)
 with col3:
   st.image(right_image_path, width=200)
 
 # Button container and click event
-with st.container():  # Wrap button in a container for styling
-  button_class = "button-container"  # Class for centering
+with st.container():
+  button_class = "button-container"
   st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
   if st.button(button_text):
     update_text()
