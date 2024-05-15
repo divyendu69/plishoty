@@ -10,12 +10,12 @@ cute_image_path = "cute_image.jpg"
 button_texts = ["Kinda what cuh", "Kinda what babe"]
 image_displayed = False  # Track if the cute image is shown
 
-def handle_cuh_click():
-  st.write("Actually you are supposed to be calling me babe now ")
-
-def handle_babe_click():
-  global image_displayed
-  image_displayed = True
+def handle_click(button_text):
+  if button_text == "Kinda what cuh":
+    st.write("Actually you are supposed to be calling me babe now ")
+  else:
+    global image_displayed
+    image_displayed = True
 
 # Configure theme (adjust colors to your preference)
 st.set_page_config(page_title="Why You Kinda...? ",
@@ -82,11 +82,8 @@ with st.container():
   button_class = "button-container"
   st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
   for i, button_text in enumerate(button_texts):
-    if st.button(button_text, "kinda-button"):
-      if i == 0:
-        handle_cuh_click()
-      else:
-        handle_babe_click()
+    if st.button(button_text, "kinda-button" + str(i)):  # Unique key for each button
+      handle_click(button_text)
   st.write('</div>', unsafe_allow_html=True)
 
 # Conditionally display cute image
