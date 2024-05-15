@@ -35,7 +35,7 @@ body {
 }
 
 .title,
-.button {  /* Center both title and button */
+.cute-button {  /* Use a different class name for button */
   text-align: center;
 }
 
@@ -50,7 +50,7 @@ body {
   margin-top: 20px;  /* Add some space above the button */
 }
 
-.button {  /* Define styles for the button class */
+.cute-button {  /* Define styles for the button class */
   background-color: #f0e68c;  /* Peachy button color */
   border: none;
   color: white;
@@ -65,7 +65,7 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.button:hover {
+.cute-button:hover {
   background-color: #f8b3b3;  /* Darker peach on hover */
 }
 </style>
@@ -74,9 +74,16 @@ body {
 # App layout
 st.markdown("""<h1 class="title">Why You Kinda...?</h1>""", unsafe_allow_html=True)
 
-# Display images and button
+# Display images and button (ensure columns are visible)
 col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
   st.image(left_image_path, width=200)
 with col2:
-  st.write("")  # Center the text (optional, title is already centered
+  st.write("")  # Center the text (optional, title is already centered)
+with col3:
+  st.image(right_image_path, width=200)
+
+# Button container and click event
+with st.container():
+  button_class = "button-container"
+  st.write('<div class="' + button_class + '">', unsafe_allow_html
