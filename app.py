@@ -83,7 +83,12 @@ with col2:
 with col3:
   st.image(right_image_path, width=200)
 
+# Define button class before using it
+button_class = "button-container"  # Define the variable here
+
 # Button container and click event
 with st.container():
-  button_class = "button-container"
-  st.write('<div class="' + button_class + '">', unsafe_allow_html)
+  st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
+  if st.button(button_text, "cute-button"):  # Update class name
+    update_text()
+  st.write('</div>', unsafe_allow_html=True)
