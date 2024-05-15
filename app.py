@@ -6,11 +6,14 @@ left_image_path = "left_image.jpg"
 right_image_path = "right_image.jpg"
 cute_image_path = "cute_image.jpg"
 
-# Button text
-button_text = "Kinda what babe"
-image_displayed = False  # Track if the image is shown
+# Button text and states
+button_texts = ["Kinda what cuh", "Kinda what babe"]
+image_displayed = False  # Track if the cute image is shown
 
-def handle_click():
+def handle_cuh_click():
+  st.write("Actually you are supposed to be calling me babe now ")
+
+def handle_babe_click():
   global image_displayed
   image_displayed = True
 
@@ -65,7 +68,7 @@ body {
 # App layout
 st.markdown("""<h1 class="title">Why You Kinda...?</h1>""", unsafe_allow_html=True)
 
-# Display images and button (ensure columns are visible)
+# Display images and buttons (ensure columns are visible)
 col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
   st.image(left_image_path, width=200)
@@ -74,17 +77,19 @@ with col2:
 with col3:
   st.image(right_image_path, width=200)
 
-# Define button class before using it
-button_class = "button-container"
-
-# Button container and click event
+# Button container and click events
 with st.container():
+  button_class = "button-container"
   st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
-  if st.button(button_text, "kinda-button"):
-    handle_click()
+  for i, button_text in enumerate(button_texts):
+    if st.button(button_text, "kinda-button"):
+      if i == 0:
+        handle_cuh_click()
+      else:
+        handle_babe_click()
   st.write('</div>', unsafe_allow_html=True)
 
 # Conditionally display cute image
 if image_displayed:
   st.image(cute_image_path, width=500)
-  # You can add an optional delay here using sleep(seconds)
+  # You can uncomment the sleep(seconds) line here for a delay
