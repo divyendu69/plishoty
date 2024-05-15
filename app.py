@@ -12,11 +12,12 @@ def main():
         .sidebar .sidebar-content {
             background-color: #ffe4e1;
         }
-        .centered-button {
+        .center {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 80vh;
+            height: 50vh;
+            margin-top: -50px;
         }
         .button {
             background-color: #ff69b4;
@@ -40,31 +41,6 @@ def main():
             height: auto;
             margin: 10px;
         }
-        .popup-image {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            border: 5px solid #ff69b4;
-            border-radius: 10px;
-        }
-        .popup-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9;
-        }
         </style>
         """,
         unsafe_allow_html=True
@@ -81,28 +57,28 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Center the button and add JavaScript for the animation
+    # Center the button
     st.markdown(
         """
-        <div class="centered-button">
-            <button id="changeTextButton" class="button">kinda what cuh</button>
+        <div class="center">
+            <button class="button" id="changeTextButton">kinda what cuh</button>
         </div>
-        <div id="popupImage" class="popup-image">
-            <img src="cute_image.jpg" alt="kinda precious, adorable, and cute typpa 🥰">
-            <figcaption style="text-align: center; color: #ff69b4;">kinda precious, adorable, and cute typpa 🥰</figcaption>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Placeholder for the image and script for button action
+    st.markdown(
+        """
+        <div id="imageContainer" style="text-align: center; display: none;">
+            <img src="cute_image.jpg" alt="kinda precious, adorable, and cute typpa 🥰" style="max-width: 100%; height: auto;">
+            <figcaption style="color: #ff69b4;">kinda precious, adorable, and cute typpa 🥰</figcaption>
         </div>
-        <div id="overlay" class="overlay"></div>
         <script>
         document.getElementById('changeTextButton').onclick = function() {
             var button = document.getElementById('changeTextButton');
             button.innerHTML = 'kinda what babe 💕';
-            button.style.backgroundColor = '#ff1493';
-            document.getElementById('popupImage').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        };
-        document.getElementById('overlay').onclick = function() {
-            document.getElementById('popupImage').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('imageContainer').style.display = 'block';
         };
         </script>
         """,
