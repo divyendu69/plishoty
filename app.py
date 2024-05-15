@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 # Set image paths (replace with your image locations)
 left_image_path = "left_image.jpg"
@@ -11,13 +10,8 @@ button_text = "Why you kinda..."
 
 def update_text():
   global button_text
-  # Animate button text transition
-  chars = "Why you kinda..."
-  new_text = "Why you kinda babe..."
-  for i in range(len(new_text)):
-    st.write(chars[:i+1])
-    time.sleep(0.05)  # Adjust speed as needed
-  button_text = new_text
+  button_text = "Why you kinda babe..."
+  st.image(cute_image_path, width=500)
 
 # Configure theme (adjust colors to your preference)
 st.set_page_config(page_title="Why You Kinda...? ",
@@ -33,6 +27,13 @@ body {
 .title {
   color: #f08080;  /* Soft pink for title */
   font-size: 48px;
+  text-align: center;  /* Center the title */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;  /* Center the button horizontally */
+  margin-top: 20px;  /* Add some space above the button */
 }
 
 .stButton button {
@@ -68,8 +69,11 @@ with col2:
 with col3:
   st.image(right_image_path, width=200)
 
-# Button click event
-if st.button(button_text):
-  update_text()
-  st.image(cute_image_path, width=500)
+# Button container and click event
+with st.container():  # Wrap button in a container for styling
+  button_class = "button-container"  # Class for centering
+  st.write('<div class="' + button_class + '">', unsafe_allow_html=True)
+  if st.button(button_text):
+    update_text()
+  st.write('</div>', unsafe_allow_html=True)
 
