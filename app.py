@@ -16,7 +16,7 @@ def main():
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 80vh;
         }
         .button {
             background-color: #ff69b4;
@@ -35,7 +35,48 @@ def main():
         .button:hover {
             background-color: #ff1493;
         }
+        .image-side {
+            max-width: 15%;
+            height: auto;
+            margin: 10px;
+        }
+        .popup-image {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            border: 5px solid #ff69b4;
+            border-radius: 10px;
+        }
+        .popup-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
         </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Display side images
+    st.markdown(
+        """
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <img src="left_image.jpg" class="image-side">
+            <img src="right_image.jpg" class="image-side">
+        </div>
         """,
         unsafe_allow_html=True
     )
@@ -46,25 +87,24 @@ def main():
         <div class="centered-button">
             <button id="changeTextButton" class="button">kinda what cuh</button>
         </div>
+        <div id="popupImage" class="popup-image">
+            <img src="cute_image.jpg" alt="kinda precious, adorable, and cute typpa 🥰">
+            <figcaption style="text-align: center; color: #ff69b4;">kinda precious, adorable, and cute typpa 🥰</figcaption>
+        </div>
+        <div id="overlay" class="overlay"></div>
         <script>
         document.getElementById('changeTextButton').onclick = function() {
             var button = document.getElementById('changeTextButton');
             button.innerHTML = 'kinda what babe 💕';
             button.style.backgroundColor = '#ff1493';
-            document.getElementById('imageContainer').style.display = 'block';
+            document.getElementById('popupImage').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        };
+        document.getElementById('overlay').onclick = function() {
+            document.getElementById('popupImage').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         };
         </script>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Placeholder for the image
-    st.markdown(
-        """
-        <div id="imageContainer" style="display: none; text-align: center;">
-            <img src="cute_image.jpg" alt="kinda precious, adorable, and cute typpa 🥰" style="max-width: 100%; height: auto;">
-            <figcaption>kinda precious, adorable, and cute typpa 🥰</figcaption>
-        </div>
         """,
         unsafe_allow_html=True
     )
